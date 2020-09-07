@@ -1,0 +1,10 @@
+timelog
+_pycache_
+*.pyc
+config.py
+*.png
+*.sh
+timeline.py
+tweet.py
+paths.py
+tweet
