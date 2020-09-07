@@ -9,4 +9,5 @@ tweet.py
 paths.py
 tweet
 py-spidev
+*.out
 
