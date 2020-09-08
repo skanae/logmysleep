@@ -1,6 +1,8 @@
 
 import json, config #標準のjsonモジュールとconfig.pyの読み込み
 from requests_oauthlib import OAuth1Session #OAuthのライブラリの読み込み
+from datetime import datetime as dt
+from datetime import date, timedelta
 
 CK = config.CONSUMER_KEY
 CS = config.CONSUMER_SECRET
@@ -13,8 +15,11 @@ twitter = OAuth1Session(CK, CS, AT, ATS) #認証処理
 url_media = "https://upload.twitter.com/1.1/media/upload.json"
 url_text = "https://api.twitter.com/1.1/statuses/update.json"
 
+today = dt.strftime(dt.today(), '%Y-%m-%d')
+image = 'media'+ today +'.png'
+
 # 画像投稿
-files = {"media" : open('image.png', 'rb')}
+files = {"media" : open(image, 'rb')}
 req_media = twitter.post(url_media, files = files)
 
 # レスポンスを確認
@@ -27,7 +32,7 @@ media_id = json.loads(req_media.text)['media_id']
 print ("Media ID: %d" % media_id)
 
 # Media ID を付加してテキストを投稿
-params = {'status': '画像投稿テスト', "media_ids": [media_id]}
+params = {'status': '1週間の睡眠記録', "media_ids": [media_id]}
 req_media = twitter.post(url_text, params = params)
 
 # 再びレスポンスを確認
