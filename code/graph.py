@@ -1,3 +1,4 @@
+#-*- coding: utf-8 -*-
 import matplotlib.pyplot as plt
 from matplotlib import dates as mdates
 from datetime import datetime as dt
@@ -27,22 +28,22 @@ for i in range(0,7):
             xlist.append(S[0])
             ylist.append(S[1])
 
-#軸のためにstrに変換
+#change type into str to axis
 today = dt.strftime(today , '%Y-%m-%d')
 lastweek = dt.strftime(lastweek, '%Y-%m-%d')
 
-# xlist,ylistを datetime型に変換
+#xlist,ylist change into datetime type
 xlist = [dt.strptime(d, '%Y-%m-%d') for d in xlist]
 ylist = [dt.strptime(d, '%H:%M:%S') for d in ylist]
-# データをプロット
+#plot data
 ax = plt.subplot()
 ax.scatter(xlist,ylist)
-# X軸の設定 (目盛りを１日毎)
+# Xaxis (per a day)
 ax.xaxis.set_major_locator(mdates.DayLocator())
 ax.xaxis.set_major_formatter(mdates.DateFormatter("%m/%d"))
 ax.set_xlim([dt.strptime(lastweek,'%Y-%m-%d'), dt.strptime(today, '%Y-%m-%d')])
 #ax.set_xlim([dt.strptime('2020-8-18','%Y-%m-%d'), dt.strptime('2020-8-21', '%Y-%m-%d')])
-# Y軸の設定 (目盛りを１時間毎,範囲)
+# Yaxis (per ahour)
 ax.yaxis.set_major_locator(mdates.HourLocator())
 ax.yaxis.set_major_formatter(mdates.DateFormatter("%H:%M"))
 ax.set_ylim([dt.strptime('00:00','%H:%M'), dt.strptime('23:59','%H:%M')])
