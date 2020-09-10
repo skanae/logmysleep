@@ -9,3 +9,4 @@ raspberry pi get information about my sleep from pressure module under the bed.
 - ADコンバータMCP3002
 
 ### 配線
+https://imgur.com/a/2hshjwL
